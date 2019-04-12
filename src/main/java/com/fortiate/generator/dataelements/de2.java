@@ -1,19 +1,21 @@
-package com.fortiate.generator.model;
+package com.fortiate.generator.dataelements;
 
 import java.util.HashMap;
 import java.util.Random;
 
-public class de2 {
+public class de2 extends DataElement{
 	
-	private String value;
-	private Random random = new Random(System.currentTimeMillis());
+	private static int id = 2;
+	private static String name = "Permanent Account Number";
+	private static String shortName = "PAN";
 	
 	public de2(String network)
 	{
-		this.value = calculate(network);
+		super(id,calculate(network),name,shortName);
+		
 	}
 	
-	private String calculate(String network)
+	private static String calculate(String network)
 	{
 		
 		System.out.println(network);
@@ -56,7 +58,10 @@ public class de2 {
      * @return
      *            A randomly generated, valid, credit card number.
      */
-    public String generate(String bin, int length) {
+    public static String generate(String bin, int length) {
+    	
+    	Random random = new Random(System.currentTimeMillis());
+
 
         // The number of random digits that we need to generate is equal to the
         // total length of the card number minus the start digits given by the
@@ -65,12 +70,12 @@ public class de2 {
 
         StringBuilder builder = new StringBuilder(bin);
         for (int i = 0; i < randomNumberLength; i++) {
-            int digit = this.random.nextInt(10);
+            int digit = random.nextInt(10);
             builder.append(digit);
         }
 
         // Do the Luhn algorithm to generate the check digit.
-        int checkDigit = this.getCheckDigit(builder.toString());
+        int checkDigit = getCheckDigit(builder.toString());
         builder.append(checkDigit);
 
         return builder.toString();
@@ -85,7 +90,7 @@ public class de2 {
      * @return The check digit required to make the given credit card number
      *         valid.
      */
-    private int getCheckDigit(String number) {
+    private static int getCheckDigit(String number) {
 
         // Get the sum of all the digits, however we need to replace the value
         // of the first digit, and every other digit, with the same digit
@@ -120,13 +125,8 @@ public class de2 {
         return ((mod == 0) ? 0 : 10 - mod);
     }
 
-	public String getValue() {
-		return value;
-	}
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+
 
 
 
