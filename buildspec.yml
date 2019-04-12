@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=318550974018.dkr.ecr.us-east-1.amazonaws.com/data_generator
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo mvn jar buiding...
+      - mvn clean package   
+      - echo Building the generator docker image          
+      - docker build -t $REPOSITORY_URI:latest -f Dockerfile .
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image....
+      - docker push $REPOSITORY_URI:latest
+      - echo DONE...   
+artifacts:
+    files: imagedefinitions.json

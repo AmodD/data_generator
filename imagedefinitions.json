@@ -1,0 +1,7 @@
+[
+    {
+        "name": "data_generator",
+        "imageUri": "318550974018.dkr.ecr.us-east-1.amazonaws.com/data_generator:latest"
+    }
+]
+
