@@ -1,12 +1,22 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      - apt-get update -y
+      - apt-get install -y software-properties-common
+      - add-apt-repository ppa:openjdk-r/ppa
+      - apt-get update -y
+      - apt-get install -y openjdk-8-jdk
+      - apt-get install -y maven        
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - REPOSITORY_URI=318550974018.dkr.ecr.us-east-1.amazonaws.com/data_generator
+      - echo installing maven...
+      - mvn install
   build:
     commands:
       - echo Build started on `date`
