@@ -50,13 +50,17 @@ public class GeneratorResource {
 	@CrossOrigin
 	public Mono<String> emptyMono() {
 		
-		Mono<String> de2mono = Mono.just("<h1>API Reference Index</h1><hr><br><a target='_blank' href='https://generator.fortiate.com:8081/de2?network=rupay'> GET random DE2 </a><br> ");
+		System.out.println("in emptyMono");
+
+		Mono<String> de2mono = Mono.just("<h1>API Reference Index V2</h1><hr><br><a target='_blank' href='https://generator.fortiate.com:8081/de2?network=rupay'> GET random DE2 </a><br> ");
 		return de2mono;
 	}
 
 	@GetMapping("/de2")
 	@CrossOrigin
 	public Publisher<de2> de2Publisher(@RequestParam String network) {
+		System.out.println("in de2");
+
 		Mono<de2> de2Mono = Mono.just((new de2(network)));
 		return de2Mono;
 	}
