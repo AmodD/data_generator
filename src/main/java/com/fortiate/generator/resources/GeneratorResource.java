@@ -93,9 +93,15 @@ public class GeneratorResource {
 	        List<TopicPartition> topicPartitions = Arrays.asList(topicPartition);
 	        kafkaConsumer.assign(topicPartitions);
 	        
-	        kafkaConsumer.seek(topicPartition, kafkaConsumer.position(topicPartition));
-	       
-	        ConsumerRecords<String, String> crecords = kafkaConsumer.poll(Duration.ofMillis(1000));
+	        //kafkaConsumer.seek(topicPartition, kafkaConsumer.position(topicPartition));
+	        long currentPosition = kafkaConsumer.position(topicPartition);
+	        kafkaConsumer.seek(topicPartition, currentPosition -1);
+	        
+	        System.out.println("currentPosition - " + currentPosition);
+	        System.out.println(kafkaConsumer);
+	        
+	       	        
+	        ConsumerRecords<String, String> crecords = kafkaConsumer.poll(Duration.ofMillis(10000));
 	        
 	        if(false) {
 	        long current = kafkaConsumer.position(topicPartition);
@@ -119,6 +125,7 @@ public class GeneratorResource {
                 System.out.printf("offset = %d, key = %s, value = %s%n", crecord.offset(), crecord.key(), crecord.value());
 
 	        	isoMessage = crecord.value();
+	        	
 	        }
 	        
 		    
@@ -144,9 +151,12 @@ public class GeneratorResource {
 	@CrossOrigin
 	public Publisher<Transaction> purchasePublisher() {
 		
+		System.out.println("in purchasePublisher");
 		Transaction transaction = new Purchase();
 		Mono<Transaction> purchaseMono = Mono.just((transaction));
 		
+		System.out.println("before gson");
+
 		 // create a new Gson instance
 		 Gson gson = new Gson();
 		 // convert your list to json
@@ -160,9 +170,14 @@ public class GeneratorResource {
 		//config.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		config.put("value.serializer", JsonSerializer.class);
 
+		System.out.println("after setting initial properties ");
+
 		config.put("acks", "all");
 		KafkaProducer<String, HashMap> kafkaProducer = new KafkaProducer<String,HashMap>(config);
 		final ProducerRecord<String,HashMap> producerRecord = new ProducerRecord<>("data-elements", "somekey2", transaction.getDeHM());
+
+		System.out.println("before sending ");
+
 		kafkaProducer.send(producerRecord);
 		
 		if(false) {
@@ -184,9 +199,10 @@ public class GeneratorResource {
         
 		}
 		
-		System.out.println("before sending...");
 		//dataELementsSender.send(transaction.getDataElements());
 		
+		System.out.println("end of method");
+
 		return purchaseMono;
 	}	
 
