@@ -13,6 +13,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import com.fortiate.generator.dataelements.DataElement;
+import com.fortiate.generator.dataelements.de0;
 import com.fortiate.generator.dataelements.de2;
 import com.fortiate.generator.dataelements.de3;
 
@@ -24,24 +25,28 @@ public class Purchase extends Transaction {
 
 	
 	
-	public Purchase()
+	public Purchase(String mti)
 	{
-		super(prepare(),network, dataElements);
+		super(prepare(mti),network, dataElements);
 		
 	}
 	
-	private static String prepare()
+	private static String prepare(String mti)
 	{
 	    dataElements.clear();
 
+	    de0 de0 = new de0(mti);
 	    de2 de2 = new de2(network);
 	    de3 de3 = new de3(network, de3Digit12);
 	    
+		dataElements.add(de0);
 		dataElements.add(de2);
 		dataElements.add(de3);
 		
+		deHM.put("0", de0.getValue().toString());
 		deHM.put("2", de2.getValue().toString());
 		deHM.put("3", de3.getValue().toString());
+		deHMJson.put("de0", de0.getValue().toString());
 		deHMJson.put("de2", de2.getValue().toString());
 		deHMJson.put("de3", de3.getValue().toString());
 		

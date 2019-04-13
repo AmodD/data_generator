@@ -27,6 +27,9 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,7 +55,7 @@ public class GeneratorResource {
 		
 		System.out.println("in emptyMono");
 
-		Mono<String> de2mono = Mono.just("<h1>API Reference Index V2</h1><hr><br><a target='_blank' href='https://generator.fortiate.com:8081/de2?network=rupay'> GET random DE2 </a><br> ");
+		Mono<String> de2mono = Mono.just("<h1>API Reference Index V0.2</h1><hr><br><a target='_blank' href='https://generator.fortiate.com:8081/de2?network=rupay'> GET random DE2 </a><br> ");
 		return de2mono;
 	}
 
@@ -151,12 +154,17 @@ public class GeneratorResource {
 		
 	}
 	
-	@GetMapping("/rupay/purchase")
+	//@GetMapping("/rupay/purchase")
+	@RequestMapping(value = "/{mti}/{network}/{transactionType}", method = RequestMethod.GET)
 	@CrossOrigin
-	public Publisher<Transaction> purchasePublisher() {
+	public Publisher<Transaction> purchasePublisher(@PathVariable String mti,
+													@PathVariable String network,
+													@PathVariable String transactionType) {
 		
 		System.out.println("in purchasePublisher");
-		Transaction transaction = new Purchase();
+		System.out.println("mti - " + mti + " network - " + network + " transactionType - " + transactionType);
+
+		Transaction transaction = new Purchase(mti);
 		Mono<Transaction> purchaseMono = Mono.just((transaction));
 		
 		System.out.println("before gson");
