@@ -22,6 +22,7 @@ phases:
       - echo Build started on `date`
       - echo mvn jar buiding...
       - mvn clean package   
+      - mvn com.spotify:dockerfile-maven-plugin:build  
       - echo Building the generator docker image          
       - docker build -t $REPOSITORY_URI:latest -f Dockerfile .
   post_build:
