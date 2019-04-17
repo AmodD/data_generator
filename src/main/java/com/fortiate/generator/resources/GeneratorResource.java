@@ -35,8 +35,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fortiate.generator.DataElementsSender;
 import com.fortiate.generator.dataelements.DataElement;
-import com.fortiate.generator.dataelements.de2;
-import com.fortiate.generator.dataelements.de3;
+import com.fortiate.generator.dataelements.DE002;
+import com.fortiate.generator.dataelements.DE003;
 import com.fortiate.generator.rupay.Purchase;
 import com.fortiate.generator.rupay.Transaction;
 import com.google.gson.Gson;
@@ -45,7 +45,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 
-@RestController
+//@RestController
 public class GeneratorResource {
 	
 	// TODO Return an empty Mono
@@ -61,17 +61,17 @@ public class GeneratorResource {
 
 	@GetMapping("/de2")
 	@CrossOrigin
-	public Publisher<de2> de2Publisher(@RequestParam String network) {
+	public Publisher<DE002> de2Publisher(@RequestParam String network) {
 		System.out.println("in de2");
 
-		Mono<de2> de2Mono = Mono.just((new de2(network)));
+		Mono<DE002> de2Mono = Mono.just((new DE002(network)));
 		return de2Mono;
 	}
 	
 	@GetMapping("/de3")
 	@CrossOrigin
-	public Publisher<de3> de3Publisher(@RequestParam String network) {
-		Mono<de3> de3Mono = Mono.just((new de3(network,"")));
+	public Publisher<DE003> de3Publisher(@RequestParam String network) {
+		Mono<DE003> de3Mono = Mono.just((new DE003(network,"")));
 		return de3Mono;
 	}
 	

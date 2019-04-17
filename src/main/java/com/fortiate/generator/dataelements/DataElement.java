@@ -5,23 +5,49 @@ import java.util.List;
 
 public abstract class DataElement {
 	
-	private int id;
-	private String value;
-	private String name ;
-	private String shortName ;
-
-	public DataElement()
-	{
-		
-	}
-	
-	public DataElement(int id,String value, String name, String shortName) {
+	public DataElement(int id, String value, String name, String shortName) {
 		super();
 		this.id = id;
 		this.value = value;
 		this.name = name;
 		this.shortName = shortName;
 	}
+	
+	public DataElement(int id, String value, String name, String shortName, String description) {
+		super();
+		this.id = id;
+		this.value = value;
+		this.name = name;
+		this.shortName = shortName;
+		this.description = description;
+
+	}
+	
+	public DataElement(int id, String value, String name, String shortName, String description, List<SubElement> subElements) {
+		super();
+		this.id = id;
+		this.value = value;
+		this.name = name;
+		this.shortName = shortName;
+		this.subElements = subElements;
+		this.description = description;
+
+	}
+
+	private int id;
+	private String value;
+	private String name;
+	private String shortName;
+	private String description="";
+
+	List<SubElement> subElements = new ArrayList<SubElement>();
+	
+
+	public DataElement()
+	{
+		
+	}
+	
 	
 	public String getValue() {
 		return value;
@@ -49,6 +75,24 @@ public abstract class DataElement {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public List<SubElement> getSubElements() {
+		return subElements;
+	}
+
+	public void setSubElements(List<SubElement> subElements) {
+		this.subElements = subElements;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
 
 
 

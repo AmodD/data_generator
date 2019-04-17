@@ -25,7 +25,6 @@ public abstract class Transaction {
 	protected static List<DataElement> dataElements = new ArrayList<>();
 
 	protected static HashMap<String, String> deHM = new HashMap<String, String>();
-	protected static HashMap<String, String> deHMJson = new HashMap<String, String>();
 
 	
 	
@@ -57,13 +56,7 @@ public abstract class Transaction {
 		this.deHM = deHM;
 	}
 
-	public HashMap<String, String> getDeHMJson() {
-		return deHMJson;
-	}
 
-	public void setDeHMJson(HashMap<String, String> deHMJson) {
-		Transaction.deHMJson = deHMJson;
-	}
 
 
 

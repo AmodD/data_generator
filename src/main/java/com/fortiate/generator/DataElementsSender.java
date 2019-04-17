@@ -15,16 +15,16 @@ import org.springframework.stereotype.Service;
 import com.fortiate.generator.dataelements.DataElement;
 import com.fortiate.generator.rupay.Transaction;
 
-@Service
+//@Service
 public class DataElementsSender {
 	
 
     private static final Logger LOG = LoggerFactory.getLogger(DataElementsSender.class);
 
-    @Autowired
+    //@Autowired
     private KafkaTemplate<String, List<DataElement>> kafkaTemplate;
 
-    @Value("${app.topic.example}")
+    //@Value("${app.topic.example}")
     private String topic ;
 
     public void send(List<DataElement> list){

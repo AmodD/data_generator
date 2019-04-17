@@ -1,15 +1,18 @@
 package com.fortiate.generator.dataelements;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
-public class de2 extends DataElement{
+public class DE002 extends DataElement{
 	
 	private static int id = 2;
 	private static String name = "Permanent Account Number";
 	private static String shortName = "PAN";
+
 	
-	public de2(String network)
+	public DE002(String network)
 	{
 		super(id,calculate(network),name,shortName);
 		

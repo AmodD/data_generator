@@ -16,14 +16,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Configuration
+//@Configuration
 public class DataElementsSenderConfig {
 
 
-    @Value("${spring.kafka.bootstrap-servers}")
+    //@Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
-    @Bean
+    //@Bean
     public Map<String, Object> producerConfigs() {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -32,12 +32,12 @@ public class DataElementsSenderConfig {
         return props;
     }
 
-    @Bean
+    //@Bean
     public ProducerFactory<String, List<DataElement>> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
-    @Bean
+    //@Bean
     public KafkaTemplate<String, List<DataElement>> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
