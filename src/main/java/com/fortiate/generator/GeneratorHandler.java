@@ -26,6 +26,18 @@ public class GeneratorHandler {
 			.body(BodyInserters.fromObject("Hello, Spring!"));
 	}
 	
+
+
+	public Mono<ServerResponse> api(ServerRequest request) {
+		return ServerResponse.ok().contentType(MediaType.TEXT_HTML)
+			.body(BodyInserters.fromObject("<h1>API Reference Index</h1><hr>"
+					+ " GET <a href='http://generator.fortiate.com:8081/de2/rupay' target='_blank'>/de2/rupay </a>"
+					+ "<br><br>"
+					+ " GET <a href='http://generator.fortiate.com:8081/rupay/purchase' target='_blank'>/rupay/purchase </a>"
+					+ "<br><br>"
+					+ " GET <a href='http://generator.fortiate.com:8081/rupay/purchase' target='_blank'>/rupay/balance_enquiry </a>"));
+	}
+	
 	public Mono<ServerResponse> de2Rupay(ServerRequest request) {
 		
 		return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)

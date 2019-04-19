@@ -19,6 +19,8 @@ public class GeneratorRouter {
 
 		return RouterFunctions			
 			.route(RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), generatorHandler::hello)
+			.andRoute(RequestPredicates.GET("/").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), generatorHandler::api)
+			.andRoute(RequestPredicates.GET("/api").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), generatorHandler::api)
 			.andRoute(RequestPredicates.GET("/de2/rupay").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), generatorHandler::de2Rupay)
 			.andRoute(RequestPredicates.GET("/rupay/balance_enquiry").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), generatorHandler::rupayBalanceEnquiry)
 			.andRoute(RequestPredicates.GET("/rupay/purchase").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), generatorHandler::rupayPurchase); 
