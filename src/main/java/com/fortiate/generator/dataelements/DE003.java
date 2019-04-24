@@ -20,30 +20,30 @@ public class DE003 extends DataElement {
 	
 	}
 	
-	public DE003(String network, String de3se1)
+	public DE003(String network, String de3se1, String de3se2,String de3se3)
 	{
 		
 		
-		super(id,calculate(network,de3se1),name,shortName,description,subElements);
+		super(id,calculate(network,de3se1,de3se2,de3se3),name,shortName,description,subElements);
 		
 	}
 	
 	
-	private static String calculate(String network, String de3se1)
+	private static String calculate(String network, String de3se1, String de3se2,String de3se3)
 	{
 		System.out.println(network);
 
 		
-		if(network.equalsIgnoreCase("rupay")) return rupay(de3se1);
+		if(network.equalsIgnoreCase("rupay")) return rupay(de3se1,de3se2,de3se3);
 		else return "not implemented";	
 		
 	}
 	
-	private static String rupay(String de3se1)
+	private static String rupay(String de3se1, String de3se2,String de3se3)
 	{
 		
 		DE003SE1 DE3SE1 = new DE003SE1(de3se1);
-		DE003SE2 DE3SE2 = new DE003SE2();
+		DE003SE2 DE3SE2 = new DE003SE2(de3se2);
 		DE003SE3 DE3SE3 = new DE003SE3();
 	
 		subElements.clear();

@@ -11,14 +11,15 @@ public class DE003SE2 extends SubElement {
 	private static String description = "";
 
 
-	public DE003SE2()
+	public DE003SE2(String de3se2)
 	{
-		super(id,calculate(),name,shortName,description);
+		super(id,calculate(de3se2),name,shortName,description);
 	}
 	
-	private static String calculate()
+	private static String calculate(String de3se2)
 	{
-		
+		String key34;
+
 		HashMap<String, String> digit34;
 		digit34 = new HashMap<String, String>();
 
@@ -30,8 +31,15 @@ public class DE003SE2 extends SubElement {
         // Get a random entry from the hashtable.
         String[] keys34 = digit34.keySet().toArray(new String[digit34.size()]);
         
-        String key34 = keys34[new Random().nextInt(keys34.length)];
-        
+		if(de3se2.isEmpty())
+		{  
+			key34=  keys34[new Random().nextInt(keys34.length)];
+
+		}
+		else 
+		{
+			key34 = de3se2;
+		}
         description = digit34.get(key34);
         
         return key34; 

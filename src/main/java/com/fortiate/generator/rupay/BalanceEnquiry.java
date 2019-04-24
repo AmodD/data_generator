@@ -9,6 +9,8 @@ public class BalanceEnquiry  extends Transaction  {
 
 	private static String network = "rupay";
 	private static String de3se1 = "31";
+	private static String de3se2 = "00";
+	private static String de3se3 = "00";
 	
 	
 	public BalanceEnquiry(String mti)
@@ -23,7 +25,7 @@ public class BalanceEnquiry  extends Transaction  {
 
 	    DE0 de0 = new DE0(mti);
 	    DE002 de2 = new DE002(network);
-	    DE003 de3 = new DE003(network, de3se1);
+	    DE003 de3 = new DE003(network, de3se1, de3se2, de3se3);
 	    DE004 de4 = new DE004(network,de3se1);
 
 	    

@@ -31,6 +31,9 @@ public class Purchase extends Transaction {
 
 	private static String network = "rupay";
 	private static String de3Digit12 = "00";
+	private static String de3Digit34 = "00";
+	private static String de3Digit56 = "00";
+	
 
 	
 	
@@ -48,7 +51,7 @@ public class Purchase extends Transaction {
 
 	    DE0 de0 = new DE0(mti);
 	    DE002 de2 = new DE002(network);
-	    DE003 de3 = new DE003(network, de3Digit12);
+	    DE003 de3 = new DE003(network, de3Digit12,de3Digit34,de3Digit56);
 	    DE004 de4 = new DE004(network,"");
 	    DE018 de18 = new DE018(network);
 	    DE022 de22 = new DE022();

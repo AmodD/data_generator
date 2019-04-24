@@ -71,7 +71,7 @@ public class GeneratorResource {
 	@GetMapping("/de3")
 	@CrossOrigin
 	public Publisher<DE003> de3Publisher(@RequestParam String network) {
-		Mono<DE003> de3Mono = Mono.just((new DE003(network,"")));
+		Mono<DE003> de3Mono = Mono.just((new DE003(network,"00","00","00")));
 		return de3Mono;
 	}
 	

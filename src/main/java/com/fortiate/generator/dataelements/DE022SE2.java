@@ -23,8 +23,8 @@ public class DE022SE2 extends SubElement  {
 		pinecMap = new HashMap<String, String>();
 
 		pinecMap.put("0", "Unspecified");
-		pinecMap.put("1", "PIN Entry Capability");
-		pinecMap.put("2", "No PIN Entry Capability");
+		pinecMap.put("1", "PIN Entry Capabile");
+		pinecMap.put("2", "No PIN Entry Capabile");
 		pinecMap.put("6", "PIN pad inoperative");
 		pinecMap.put("8", "Reserved for RuPay");
 		pinecMap.put("9", "Reserved for private use(Biometric entry capability)");
